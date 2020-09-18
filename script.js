@@ -15,15 +15,33 @@ console.log(moment().format("h A"));
 </button>
 </div> */}
 
+// One row with time (hour), text area, and submit button. Each hour has its own row.
 var newRow = $("<div>");
 newRow.attr("class", "row", "time-block")
 
+// TODO: will be used in loop later when creating rows
+// Creates the three columns
+// Contains the hour
 var hourCol = $("<div>");
-newRow.attr("class", "row", "time-block")
+hourCol.attr("class", "col-md-2", "hour")
+// Contains the textarea for user's event
+var textCol = $("<textarea>");
+textCol.attr("class", "col-md-8", "past")
+// Contains the save button
+var saveCol = $("<button>");
+saveCol.attr("class", "col-md-2", "saveBtn")
+// Appends the three columns to the row
+newRow.append(hourCol, textCol, saveCol);
+
 
 
 
 // TODO: SHow the time on top of the calender, Using moment.js grab the time, and set the text of the P tag with the id of currentDay to be our time from moment.js
+// Variable to be used to dispaly on html and later for if statements determining if events have past
+var currentTime = (moment().format('MMMM Do YYYY, h:mm:ss a'));
+$("#currentDay").text(currentTime)
+
+
 
 // TODO:  Create an array to hold the hours that I need ["9 AM", "10 AM", "..." "12 PM" etc]
 
