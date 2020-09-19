@@ -17,7 +17,7 @@ for (let i = 0; i < hours.length; i++) {
     // Contains the hour
     hr++;
     var hourCol = $("<div>");
-    hourCol.attr("class", "col-md-2", "hour")
+    hourCol.attr("class", "col-md-2 hour")
     hourCol.text(hours[i])
     // Contains the textarea for user's event
     var textCol = $("<textarea>");
@@ -25,7 +25,7 @@ for (let i = 0; i < hours.length; i++) {
     textCol.attr("id", hr);
     // Contains the save button
     var saveCol = $("<button>");
-    saveCol.attr("class", "col-md-2", "saveBtn")
+    saveCol.attr("class", "col-md-2 saveBtn")
     saveCol.text("Save");
     saveCol.attr("data-hour", hr);
     // Appends the three columns to the row
@@ -33,7 +33,7 @@ for (let i = 0; i < hours.length; i++) {
     $(".container").append(newRow);
 
     // Adds saved content to text area it belongs to
-    var textFromLocalStorage = localStorage.getItem(saveCol.attr("data-hour"))
+    var textFromLocalStorage = localStorage.getItem(hr);
     textCol.text(textFromLocalStorage);
 
     // Compare the current hour to each hour on webpage (To learn which ones have past)
@@ -55,14 +55,17 @@ for (let i = 0; i < hours.length; i++) {
 
 // Create click event listener for my save buttons 
 $(".saveBtn").on("click", function (event) {
+
     // Grab the value of the text area and save it to a var in order to store it in local storage later
-    var enteredText = $.trim(textCol.val());
-    console.log(enteredText);
-    console.log(saveCol.attr("data-hour"))
+    var whichHour = event.target.dataset.hour
+    var enteredText = document.getElementById(whichHour).value;
+    console.log(enteredText)
+    console.dir(enteredText)
 
     // TODO: using localStorage.setItem save the text to local storage
     // localStorage.setItem(this.attr("data-hour"), enteredText)
-    localStorage.setItem(saveCol.attr("data-hour"), enteredText)
+    localStorage.setItem(whichHour, enteredText)
+    
     // localStorage.setItem("hour", hr)
 })
 
