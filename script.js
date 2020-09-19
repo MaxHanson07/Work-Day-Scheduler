@@ -51,20 +51,20 @@ for (let i = 0; i < hours.length; i++) {
         textCol.addClass("future");
     }
 
-    // Create click event listener for my save buttons 
-    saveCol.on("click", function (event) {
-        // Grab the value of the text area and save it to a var in order to store it in local storage later
-        var enteredText = $.trim(textCol.val());
-        console.log(enteredText);
-        console.log(saveCol.attr("data-hour"))
-
-        // TODO: using localStorage.setItem save the text to local storage
-        // localStorage.setItem(this.attr("data-hour"), enteredText)
-        localStorage.setItem(saveCol.attr("data-hour"), enteredText)
-        // localStorage.setItem("hour", hr)
-    })
-
 }
+
+// Create click event listener for my save buttons 
+$(".saveBtn").on("click", function (event) {
+    // Grab the value of the text area and save it to a var in order to store it in local storage later
+    var enteredText = $.trim(textCol.val());
+    console.log(enteredText);
+    console.log(saveCol.attr("data-hour"))
+
+    // TODO: using localStorage.setItem save the text to local storage
+    // localStorage.setItem(this.attr("data-hour"), enteredText)
+    localStorage.setItem(saveCol.attr("data-hour"), enteredText)
+    // localStorage.setItem("hour", hr)
+})
 
 // localStorage.setItem("test", "My first note")
 // localStorage.setItem("test1", "My second note")
