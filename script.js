@@ -53,38 +53,48 @@ for (let i = 0; i < hours.length; i++) {
     newRow.append(hourCol, textCol, saveCol);
     $(".container").append(newRow);
 
+    // Adds saved content to text area it belongs to
+    var textFromLocalStorage = localStorage.getItem(saveCol.attr("data-hour"))
+    $(".first").text(text1FromLocalStorage)
+
     // Compare the current hour to each hour on webpage (To learn which ones have past)
     // Give the elements (hour block) the classes that they need based on if they are past, present, or future
     // TODO: Fix 9:00 Am
     var currentHr = moment().format("H");
     console.log(currentHr);
     console.log(textCol.attr("id"))
-    if (currentHr > textCol.attr("id")) {
-        textCol.attr("class", "past");
-    }
-    else if (currentHr === textCol.attr("id")) {
-        textCol.attr("class", "present");
-    }
-    else {
-        textCol.attr("class", "future");
-    }
+    // TODO: Acting funky
+    // if (currentHr > textCol.attr("id")) {
+    //     textCol.attr("class", "past");
+    // }
+    // else if (currentHr === textCol.attr("id")) {
+    //     textCol.attr("class", "present");
+    // }
+    // else {
+    //     textCol.attr("class", "future");
+    // }
+
+    // TODO: Create click event listener for my buttons 
+    saveCol.on("click", function (event) {
+        // Grab the value of the text area and save it to a var in order to store it in local storage later
+        var enteredText = textCol.val();
+        console.log(enteredEvent);
+
+        // TODO: using localStorage.setItem save the text to local storage
+        localStorage.setItem(this.attr("data-hour"), enteredText)
+        localStorage.setItem("hour", hr)
+
+
+    })
+   
 }
 
-// TODO: Create click event listener for my buttons 
+// localStorage.setItem("test", "My first note")
+// localStorage.setItem("test1", "My second note")
 
-// TODO:  Grab the value of the text are and save it to a var (I nedd to be able to save the text from the text area that is in the same row as my button)
+// var text1FromLocalStorage = localStorage.getItem("test")
+// $(".first").text(text1FromLocalStorage)
 
-// TODO: using localStorage.setItem save the text to local storage
+// var text2FromLocalStorage = localStorage.getItem("test1")
 
-// TODO: retrieve the data from local storage using localStorage.getItem and show them back on the text area that they belong to (How can i know what text from local storage goes to what text area?)
-
-localStorage.setItem("test", "My first note")
-localStorage.setItem("test1", "My second note")
-
-
-var text1FromLocalStorage = localStorage.getItem("test")
-$(".first").text(text1FromLocalStorage)
-
-var text2FromLocalStorage = localStorage.getItem("test1")
-
-$(".second").text(text2FromLocalStorage) 
+// $(".second").text(text2FromLocalStorage) 
