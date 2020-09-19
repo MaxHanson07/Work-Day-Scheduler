@@ -39,7 +39,7 @@ for (let i = 0; i < hours.length; i++) {
     // Compare the current hour to each hour on webpage (To learn which ones have past)
     // Give the elements (hour block) the classes that they need based on if they are past, present, or future
     var currentHr = moment().format("H");
- 
+
     // Sets the hour blocks to their corresponding class in order to color code them in CSS
     if (parseInt(currentHr) > parseInt(textCol.attr("id"))) {
         textCol.addClass("past");
@@ -56,6 +56,7 @@ for (let i = 0; i < hours.length; i++) {
         // Grab the value of the text area and save it to a var in order to store it in local storage later
         var enteredText = $.trim(textCol.val());
         console.log(enteredText);
+        console.log(saveCol.attr("data-hour"))
 
         // TODO: using localStorage.setItem save the text to local storage
         // localStorage.setItem(this.attr("data-hour"), enteredText)
