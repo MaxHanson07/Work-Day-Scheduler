@@ -1,20 +1,3 @@
-console.log(moment().format());
-console.log(moment().format("h A"));
-
-// TODO: Create one row with time, text area, and button using JQ
-// Here's the layout of what we need to make using JQ
-{/* <div class="row  time-block">
-<div class="col-md-2 hour">
-  9 AM
-</div>
-<textarea class="col-md-8 past">
-  
-</textarea>
-<button class="col-md-2 saveBtn ">
-  Save
-</button>
-</div> */}
-
 // One row with time (hour), text area, and submit button. Each hour has its own row.
 var newRow = $("<div>");
 newRow.attr("class", "row", "time-block")
@@ -55,14 +38,10 @@ for (let i = 0; i < hours.length; i++) {
 
     // Compare the current hour to each hour on webpage (To learn which ones have past)
     // Give the elements (hour block) the classes that they need based on if they are past, present, or future
-    // TODO: Fix 9:00 Am
     var currentHr = moment().format("H");
-    console.log(currentHr);
-    console.log(textCol.attr("id"))
-    console.log(currentHr > textCol.attr("id"))
-
+ 
     // Sets the hour blocks to their corresponding class in order to color code them in CSS
-    if (currentHr > textCol.attr("id")) {
+    if (parseInt(currentHr) > parseInt(textCol.attr("id"))) {
         textCol.addClass("past");
     }
     else if (currentHr === textCol.attr("id")) {
@@ -72,20 +51,18 @@ for (let i = 0; i < hours.length; i++) {
         textCol.addClass("future");
     }
 
-    // TODO: Create click event listener for my save buttons 
+    // Create click event listener for my save buttons 
     saveCol.on("click", function (event) {
         // Grab the value of the text area and save it to a var in order to store it in local storage later
-        var enteredText = textCol.val();
+        var enteredText = $.trim(textCol.val());
         console.log(enteredText);
 
         // TODO: using localStorage.setItem save the text to local storage
         // localStorage.setItem(this.attr("data-hour"), enteredText)
         localStorage.setItem(saveCol.attr("data-hour"), enteredText)
         // localStorage.setItem("hour", hr)
-
-
     })
-   
+
 }
 
 // localStorage.setItem("test", "My first note")
